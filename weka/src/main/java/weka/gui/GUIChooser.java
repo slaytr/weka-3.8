@@ -88,7 +88,7 @@ public class GUIChooser {
         "(c) " + Copyright.getFromYear() + " - " + Copyright.getToYear(),
         "The University of Waikato", "Hamilton, New Zealand");
     weka.gui.SplashWindow.splash(
-      ClassLoader.getSystemResource("weka/gui/weka_icon_new.png"), message);
+      ClassLoader.getSystemResource("weka/gui/weka-logo-splash.png"), message);
     weka.gui.SplashWindow.invokeMain("weka.gui.GUIChooserApp", args);
     weka.gui.SplashWindow.disposeSplash();
   }
