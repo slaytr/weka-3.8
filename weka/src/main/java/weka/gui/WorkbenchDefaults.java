@@ -38,9 +38,9 @@ public class WorkbenchDefaults extends Defaults {
   public static final String APP_ID = "workbench";
 
   protected static final Settings.SettingKey LAF_KEY = new Settings.SettingKey(
-    APP_ID + ".lookAndFeel", "Look and feel for UI",
+    APP_ID + ".lookAndFeel", "Weka Application Theme",
     "Note: a restart is required for this setting to come into effect");
-  protected static final String LAF = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+  protected static final String LAF = "com.formdev.flatlaf.FlatLightLaf";
   protected static final Settings.SettingKey SHOW_JTREE_TIP_TEXT_KEY =
     new Settings.SettingKey(APP_ID + ".showGlobalInfoTipText",
       "Show scheme tool tips in tree view", "");
@@ -59,7 +59,6 @@ public class WorkbenchDefaults extends Defaults {
     super(APP_ID);
 
     List<String> lafs = LookAndFeel.getAvailableLookAndFeelClasses();
-    lafs.add(0, "<use platform default>");
     LAF_KEY.setPickList(lafs);
     m_defaults.put(LAF_KEY, LAF);
     m_defaults.put(SHOW_JTREE_TIP_TEXT_KEY, SHOW_JTREE_GLOBAL_INFO_TIPS);

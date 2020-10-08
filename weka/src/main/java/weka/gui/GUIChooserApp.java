@@ -1617,7 +1617,7 @@ public class GUIChooserApp extends JFrame {
 
     /** Settings key for LAF */
     protected static final Settings.SettingKey LAF_KEY =
-      new Settings.SettingKey(APP_ID + ".lookAndFeel", "Look and feel for UI",
+      new Settings.SettingKey(APP_ID + ".lookAndFeel", "Weka Application Theme",
         "Note: a restart is required for this setting to come into effect");
 
     /** Default value for LAF */
@@ -1632,7 +1632,6 @@ public class GUIChooserApp extends JFrame {
     public GUIChooserDefaults() {
       super(APP_ID);
       List<String> lafs = LookAndFeel.getAvailableLookAndFeelClasses();
-      lafs.add(0, "<use platform default>");
       LAF_KEY.setPickList(lafs);
       m_defaults.put(LAF_KEY, LAF);
     }

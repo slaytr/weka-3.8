@@ -211,7 +211,7 @@ public class KnowledgeFlowApp extends AbstractGUIApplication {
     private static final long serialVersionUID = 6957165806947500265L;
 
     public static final Settings.SettingKey LAF_KEY = new Settings.SettingKey(
-      KFDefaults.APP_ID + ".lookAndFeel", "Look and feel for UI",
+      KFDefaults.APP_ID + ".lookAndFeel", "Weka Application Theme",
       "Note: a restart " + "is required for this setting ot come into effect");
     public static final String LAF = "";
 
@@ -226,7 +226,7 @@ public class KnowledgeFlowApp extends AbstractGUIApplication {
       super(KFDefaults.APP_ID);
 
       List<String> lafs = LookAndFeel.getAvailableLookAndFeelClasses();
-      lafs.add(0, "<use platform default>");
+
       LAF_KEY.setPickList(lafs);
       m_defaults.put(LAF_KEY, LAF);
       m_defaults.put(KFDefaults.SHOW_JTREE_TIP_TEXT_KEY,

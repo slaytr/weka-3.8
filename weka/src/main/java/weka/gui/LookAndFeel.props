@@ -7,4 +7,6 @@
 #Theme=com.sun.java.swing.plaf.motif.MotifLookAndFeel
 #Theme=com.sun.java.swing.plaf.windows.WindowsLookAndFeel
 #Theme=com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel
+#Theme=com.formdev.flatlaf.FlatLightLaf
+#Theme=com.formdev.flatlaf.FlatDarkLaf
 

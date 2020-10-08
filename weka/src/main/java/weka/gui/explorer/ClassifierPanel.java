@@ -359,7 +359,8 @@ public class ClassifierPanel extends AbstractPerspective implements
 
     // Connect / configure the components
     m_OutText.setEditable(false);
-    m_OutText.setFont(new Font("Monospaced", Font.PLAIN, 12));
+    m_OutText.setFont(new Font("JetBrains Mono",
+            Font.PLAIN, 12));
     m_OutText.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
     m_OutText.addMouseListener(new MouseAdapter() {
       @Override
@@ -4038,7 +4039,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     protected static final Settings.SettingKey OUTPUT_FONT_KEY =
       new Settings.SettingKey(ID + ".outputFont", "Font for text output",
         "Font to " + "use in the output area");
-    protected static final Font OUTPUT_FONT = new Font("Monospaced",
+    protected static final Font OUTPUT_FONT = new Font("JetBrains Mono",
       Font.PLAIN, 12);
 
     protected static final Settings.SettingKey OUTPUT_TEXT_COLOR_KEY =

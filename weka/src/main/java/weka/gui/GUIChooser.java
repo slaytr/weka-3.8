@@ -25,6 +25,11 @@ import weka.core.Copyright;
 import weka.core.Version;
 
 import javax.swing.JMenuBar;
+import java.awt.GraphicsEnvironment;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +41,17 @@ import java.util.List;
  * @version $Revision: $
  */
 public class GUIChooser {
+
+  static {
+    try {
+      // Load Packaged Fonts
+      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+      ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
+              new File("weka/build/production/weka-3.8/weka/gui/fonts/jetbrains-mono-regular.ttf")));
+    } catch (IOException | FontFormatException e) {
+      e.printStackTrace();
+    }
+  }
 
   /**
    * Interface for plugin components that can be accessed from either the
