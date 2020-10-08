@@ -203,11 +203,19 @@ public class MatrixPanel extends JPanel {
   /** Contains discrete colours for colouring for nominal attributes */
   private final ArrayList<Color> m_colorList = new ArrayList<Color>();
 
-  /** default colour list */
-  private static final Color[] m_defaultColors = { Color.blue, Color.red,
-    Color.cyan, new Color(75, 123, 130), Color.pink, Color.green, Color.orange,
-    new Color(255, 0, 255), new Color(255, 0, 0), new Color(0, 255, 0),
-    Color.black };
+  /** default colorbrewer set 1 colour list */
+  private static final Color[] m_defaultColors = {
+        new Color(137,214,255),
+        new Color(254,150,149),
+        new Color(177,236,124),
+        new Color(243,176,88),
+        new Color(213,144,247),
+        new Color(31,120,180),
+        new Color(227,26,28),
+        new Color(51,160,44),
+        new Color(255,127,0),
+        new Color(106,61,154),
+  };
 
   /** color for the font used in column and row names */
   private final Color fontColor = new Color(98, 101, 156);

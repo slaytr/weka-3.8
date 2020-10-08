@@ -68,9 +68,18 @@ public class AttributePanel extends JScrollPane {
   protected ArrayList<Color> m_colorList;
 
   /** default colours for colouring discrete class */
-  protected Color[] m_DefaultColors = { Color.blue, Color.red, Color.green,
-    Color.cyan, Color.pink, new Color(255, 0, 255), Color.orange,
-    new Color(255, 0, 0), new Color(0, 255, 0), Color.white };
+  protected Color[] m_DefaultColors = {
+          new Color(137,214,255),
+          new Color(254,150,149),
+          new Color(177,236,124),
+          new Color(243,176,88),
+          new Color(213,144,247),
+          new Color(31,120,180),
+          new Color(227,26,28),
+          new Color(51,160,44),
+          new Color(255,127,0),
+          new Color(106,61,154),
+  };
 
   /**
    * If set, it allows this panel to avoid setting a color in the color list
