@@ -96,7 +96,6 @@ public class LookAndFeel {
 
     // Add Platform Specific Theme Options
     for (UIManager.LookAndFeelInfo i : UIManager.getInstalledLookAndFeels()) {
-//      lafs.add(i.getClassName());
       String className = i.getClassName();
       if(themeToLookAndFeel.containsValue(className)) {
         themeToLookAndFeel.forEach((k, v) -> {
@@ -123,13 +122,13 @@ public class LookAndFeel {
    */
   public static boolean setLookAndFeel(String themeName) {
     boolean result;
-    String classname = themeToLookAndFeel.getOrDefault(themeName, themeName);
+    String LafPackageName = themeToLookAndFeel.getOrDefault(themeName, themeName);
     try {
-      UIManager.setLookAndFeel(classname);
+      UIManager.setLookAndFeel(LafPackageName);
       result = true;
 
       if (System.getProperty("os.name").toLowerCase().contains("mac os x")
-        && !classname.contains("com.apple.laf")) {
+        && !LafPackageName.contains("com.apple.laf")) {
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
           .addKeyEventDispatcher(new KeyEventDispatcher() {
             @Override
@@ -151,7 +150,7 @@ public class LookAndFeel {
 
       // workaround for scrollbar handle disappearing bug in Nimbus LAF:
       // https://bugs.openjdk.java.net/browse/JDK-8134828
-      if (classname.toLowerCase().contains("nimbus")) {
+      if (LafPackageName.toLowerCase().contains("nimbus")) {
         javax.swing.LookAndFeel lookAndFeel = UIManager.getLookAndFeel();
         UIDefaults defaults = lookAndFeel.getDefaults();
         defaults.put("ScrollBar.minimumThumbSize", new Dimension(30, 30));
@@ -194,7 +193,6 @@ public class LookAndFeel {
     String classname;
 
     classname = LOOKANDFEEL_PROPERTIES.getProperty("Theme", "");
-    System.out.println("setLookAndFeel" + classname);
     if (classname.equals("")) {
       // Java 1.5 crashes under Gnome if one sets it to the GTKLookAndFeel
       // theme, hence we don't set any theme by default if we're on a Linux
