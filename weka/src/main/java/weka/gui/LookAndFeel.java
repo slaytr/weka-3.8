@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.HashMap;
 
 /**
  * A little helper class for setting the Look and Feel of the user interface.
@@ -49,6 +50,8 @@ import java.util.Properties;
  */
 public class LookAndFeel {
 
+  public static HashMap<String, String> themeToLookAndFeel = new HashMap<String, String>();
+
   /** The name of the properties file */
   public static String PROPERTY_FILE = "weka/gui/LookAndFeel.props";
 
@@ -56,6 +59,18 @@ public class LookAndFeel {
   protected static Properties LOOKANDFEEL_PROPERTIES;
 
   static {
+    // Install packaged Look and Feels
+    UIManager.installLookAndFeel("Light", "FlatLightLaf");
+
+    // Use plain English names for Look and Feels
+    themeToLookAndFeel.put("Default", "Default");
+    themeToLookAndFeel.put("Light", "com.formdev.flatlaf.FlatLightLaf");
+    themeToLookAndFeel.put("Metal", "javax.swing.plaf.metal.MetalLookAndFeel");
+    themeToLookAndFeel.put("Nimbus", "javax.swing.plaf.nimbus.NimbusLookAndFeel");
+    themeToLookAndFeel.put("Motif", "com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+    themeToLookAndFeel.put("Windows", "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+    themeToLookAndFeel.put("Windows Classic", "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+
     try {
       LOOKANDFEEL_PROPERTIES = Utils.readProperties(PROPERTY_FILE);
     } catch (Exception ex) {
@@ -79,22 +94,36 @@ public class LookAndFeel {
   public static List<String> getAvailableLookAndFeelClasses() {
     List<String> lafs = new LinkedList<String>();
 
+    // Add Platform Specific Theme Options
     for (UIManager.LookAndFeelInfo i : UIManager.getInstalledLookAndFeels()) {
-      lafs.add(i.getClassName());
+//      lafs.add(i.getClassName());
+      String className = i.getClassName();
+      if(themeToLookAndFeel.containsValue(className)) {
+        themeToLookAndFeel.forEach((k, v) -> {
+          if (v.equals(className)) {
+            lafs.add(k);
+          }
+        });
+      }
     }
 
+    // Add a Default Theme Option
+    lafs.add(0, "Default");
+
+    // Add Package Theme Options
+    lafs.add(1,"Light");
     return lafs;
   }
 
   /**
    * sets the look and feel to the specified class
    * 
-   * @param classname the look and feel to use
+   * @param themeName theme name of the look and feel
    * @return whether setting was successful
    */
-  public static boolean setLookAndFeel(String classname) {
+  public static boolean setLookAndFeel(String themeName) {
     boolean result;
-
+    String classname = themeToLookAndFeel.getOrDefault(themeName, themeName);
     try {
       UIManager.setLookAndFeel(classname);
       result = true;
@@ -144,16 +173,14 @@ public class LookAndFeel {
    */
   public static void setLookAndFeel(String appID, String lookAndFeelKey, String defaultLookAndFeel)
     throws IOException {
+    // Get the current Look and Feel (LAF) from the weka metastore
     Settings forLookAndFeelOnly = new Settings("weka", appID);
+    String laf = forLookAndFeelOnly.getSetting(appID, lookAndFeelKey, defaultLookAndFeel, Environment.getSystemWide());
 
-    String laf =
-      forLookAndFeelOnly.getSetting(appID, lookAndFeelKey, defaultLookAndFeel,
-        Environment.getSystemWide());
-
-    if (laf.length() > 0 && laf.contains(".")
-      && LookAndFeel.setLookAndFeel(laf)) {
+    // Try set the LaF from stored metastore data
+    if (laf.length() > 0 && LookAndFeel.setLookAndFeel(laf)) {
     } else {
-      LookAndFeel.setLookAndFeel();
+      LookAndFeel.setLookAndFeel(); // Sets the LaF from Properties, else sets the default LaF
     }
   }
 
@@ -167,6 +194,7 @@ public class LookAndFeel {
     String classname;
 
     classname = LOOKANDFEEL_PROPERTIES.getProperty("Theme", "");
+    System.out.println("setLookAndFeel" + classname);
     if (classname.equals("")) {
       // Java 1.5 crashes under Gnome if one sets it to the GTKLookAndFeel
       // theme, hence we don't set any theme by default if we're on a Linux
@@ -177,7 +205,6 @@ public class LookAndFeel {
         classname = getSystemLookAndFeel();
       }
     }
-
     return setLookAndFeel(classname);
   }
 
