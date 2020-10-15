@@ -28,8 +28,8 @@ import javax.swing.JMenuBar;
 import java.awt.GraphicsEnvironment;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,8 +46,11 @@ public class GUIChooser {
     try {
       // Load Packaged Fonts
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-      ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
-              new File("weka/build/production/weka-3.8/weka/gui/fonts/jetbrains-mono-regular.ttf")));
+      InputStream jetBrainsFont = ClassLoader.getSystemClassLoader()
+              .getResourceAsStream("weka/gui/fonts/jetbrains-mono-regular.ttf");
+      if (jetBrainsFont != null) {
+        ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, jetBrainsFont));
+      }
     } catch (IOException | FontFormatException e) {
       e.printStackTrace();
     }

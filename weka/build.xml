@@ -649,6 +649,7 @@
          <include name="weka/**/*.kfml"/>
          <include name="weka/**/*.kf"/>
          <include name="weka/**/*.arff"/>
+         <include name="weka/**/*.ttf"/>
          <include name="weka/**/DatabaseUtils.props.*"/>
          <include name="weka/gui/beans/README*"/>
          <include name="weka/gui/knowledgeflow/README*"/>
@@ -695,6 +696,11 @@
       </patternset>
     </unzip>
     <unzip src="${lib}/jaxb-runtime-2.3.2.jar" dest="${build}/classes">
+      <patternset>
+        <include name="com/**/*"/>
+      </patternset>
+    </unzip>
+    <unzip src="${lib}/flatlaf-0.39.jar" dest="${build}/classes">
       <patternset>
         <include name="com/**/*"/>
       </patternset>
@@ -931,6 +937,7 @@
       <include name="src/**/*.default"/>
       <include name="src/**/*.cost"/>
       <include name="src/**/*.arff"/>
+      <include name="src/**/*.ttf"/>
       <include name="src/**/*.kfml"/>
       <include name="src/**/*.matrix"/>
       <include name="lib/**/*.jar"/>
