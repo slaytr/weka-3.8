@@ -65,6 +65,9 @@ public class LookAndFeel {
     // Use plain English names for Look and Feels
     themeToLookAndFeel.put("Default", "Default");
     themeToLookAndFeel.put("Light", "com.formdev.flatlaf.FlatLightLaf");
+    themeToLookAndFeel.put("Dark", "com.formdev.flatlaf.FlatDarkLaf");
+    themeToLookAndFeel.put("Darcula", "com.formdev.flatlaf.FlatDarculaLaf");
+    themeToLookAndFeel.put("IntelliJ", "com.formdev.flatlaf.FlatIntelliJLaf");
     themeToLookAndFeel.put("Metal", "javax.swing.plaf.metal.MetalLookAndFeel");
     themeToLookAndFeel.put("Nimbus", "javax.swing.plaf.nimbus.NimbusLookAndFeel");
     themeToLookAndFeel.put("Motif", "com.sun.java.swing.plaf.motif.MotifLookAndFeel");
@@ -111,6 +114,9 @@ public class LookAndFeel {
 
     // Add Package Theme Options
     lafs.add(1,"Light");
+    lafs.add(2,"Dark");
+    lafs.add(3,"Darcula");
+    lafs.add(4,"IntelliJ");
     return lafs;
   }
 
